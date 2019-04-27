@@ -1,0 +1,200 @@
+ip address show
+ip add
+ip a
+
+
+命令总结
+01. ping命令   网络连通性测试命令
+    Linux系统中， ping命令会一直长ping下去， 根本停下来
+	windows系统中， ping命令在发送4次测试， 就停止ping
+
+
+    ping命令操作失败情况：
+    ping 10.0.0.200
+    [e:\~]$ ping 10.0.0.200
+
+    正在 Ping 10.0.0.200 具有 32 字节的数据:
+    请求超时。
+
+	ping命令操作成功情况
+    [e:\~]$ ping 127.0.0.1
+    
+    正在 Ping 127.0.0.1 具有 32 字节的数据:
+    来自 127.0.0.1 的回复: 字节=32 时间<1ms TTL=128
+    来自 127.0.0.1 的回复: 字节=32 时间<1ms TTL=128
+    来自 127.0.0.1 的回复: 字节=32 时间<1ms TTL=128
+    
+    127.0.0.1 的 Ping 统计信息:
+        数据包: 已发送 = 3，已接收 = 3，丢失 = 0 (0% 丢失)，
+    往返行程的估计时间(以毫秒为单位):
+        最短 = 0ms，最长 = 0ms，平均 = 0ms
+
+
+02. ip address show   检查网络地址信息	
+    ip add
+    ip a
+
+03. telnet            检查主机相应服务是否正常开启
+    telnet 地址信息  服务端口号
+	[e:\~]$ telnet 10.0.0.200 22
+    Connecting to 10.0.0.200:22...
+    Connection established.
+    To escape to local shell, press 'Ctrl+Alt+]'.
+    SSH-2.0-OpenSSH_7.4
+	
+04. shutdown   关闭系统/重启系统
+    shutdown -h 10      --- 多久关闭
+	shutdown -h 0/now   --- 立刻关闭系统
+	shutdown -c         --- 取消关闭或重启系统方案
+    shutdown -r 10      --- 多久重启系统
+	shutdown -r 0/now   --- 立刻重启系统
+	
+05. halt poweroff   立刻关闭操作系统
+
+06. reboot          立刻重启操作系统
+
+07. pwd             显示目录结构信息
+
+08. cd              切换路径信息
+    cd -            返回到上一次所在路径
+	cd ..           切换路径到上一级目录  
+	cd ../../../
+	cd .            切换到当前所在路径
+	cd ~/cd         切换到用户家目录
+	
+09. mkdir           创建目录信息
+    mkdir 目录信息
+	mdkir -p 目录信息    创建多级目录
+	
+10. touch          创建文件信息
+
+11. ls             查看文件或目录属性信息
+    ls -l          显示详细信息
+	ls -d          只显示目录信息
+	ls -lrt        r 表示反向排序
+	               t 按照时间排序
+	ls -a          a 可以显示隐藏文件信息
+	
+12. cat            查看文件信息
+    
+13. echo           输出文字信息
+    echo xxx >  file.txt      输出重定向 （先清空文件信息，再将新的信息进行添加）
+	echo xxx >> file.txt      输出追加重定向  （在一个文件的最后一行，追加新的内容信息）
+
+14. cp             复制数据信息
+    cp -r          采用递归方式进行数据信息复制（复制目录）
+    cp -a 
+	   -a == -dRp
+	   -d          和链接文件有关？？？
+	   -R          进行递归复制
+	   -p          保持属性不变
+
+15. mv             移动数据信息
+
+16. rm             移除或删除数据信息
+    rm -f          强制删除数据
+	rm -r          删除目录信息
+	rm -rf         强制删除目录数据信息
+	
+17. mount          挂载命令
+    mount 需要进行挂载设备信息  挂载点目录信息（必须存在）
+	
+18. umount          卸载命令
+    umount 挂载点目录 
+	
+19. systemctl - Control the systemd system and service manager
+                控制管理系统服务运行命令
+	systemctl set-default  xxx.target   --定义系统的默认运行级别
+    systemctl get-default 	            --获得当前系统默认运行级别
+				
+				
+20. hostname    临时修改主机名称
+    hostname    新的主机名称
+	
+21. hostnamectl 既可以临时修改主机名称  又可以永久修改主机配置文件
+    hostnamectl set-hostname 新的主机名称
+	
+22. yum         安装软件（解决软件依赖关系）
+    yum install -y xxx
+	yum reinstall -y xxx
+	
+23. rpm         安装软件（不能解决软件依赖关系）
+    rpm -ivh 
+	rpm -qa
+	rpm -ql
+	rpm -e 
+	
+23. Failed     失败了
+
+24. grep       三剑客命令 过滤文本信息 
+    -A         显示搜索信息的后几行
+	-B         显示搜索信息的前几行
+    -C         显示搜索信息的前后几行
+	-n         显示搜索信息的行号内容
+	-v         对搜索信息进行排除 显示排除后的其余信息
+	-E         识别扩展正则信息？？？
+
+	sed        三剑客命令 取出行的信息 修改替换文件内容
+	-n         取消默认输出
+    //p        打印输出内容
+    s///g	   搜索信息，并进行全局替换
+	-i         真正编辑修改文件内容
+				
+25. lscpu      检查cpu属性信息
+
+26. free      检查内存使用情况
+    free -h  
+
+27. df        检查磁盘使用情况
+    df -h 
+
+28. w         显示负载使用情况
+
+29. column    以表格形式显示信息
+    column -t /proc/mounts 	
+  
+30. tail     显示文件最后几行信息，默认显示最后十行信息
+    tail -5 
+	-f       实时监控日志信息
+	-F       实时监控日志信息
+
+31. head     显示文件前面几行信息，默认显示前面十行信息
+    head -5
+    -c       显示文件中的前几个字符信息	
+	
+32. source   让系统快速加载配置文件信息
+    可以加载那些配置文件
+    /etc/profile
+    /etc/bashrc
+    ~/.bashrc 
+    ~/.bash_profile	
+	
+33. setenforce   设置selinux程序状态
+    getenforce   查看selinux程序状态
+	
+34. tr    替换搜索信息
+    tr '搜索内容' '替换信息' <文件内容
+	
+35. which  查看命令绝对路径信息
+    which 命令信息
+	
+36. tree   显示目录结构 以树状形式显示
+
+	
+快捷方式总结
+ctrl + c cancel      中断或停止命令的执行过程  
+esc + .              调用上一个命令最后一个参数信息     
+ctrl + d             退出当前用户登陆模式，返回原来用户状态
+                     退出远程连接状态（多次操作）         
+
+
+符号信息
+~                    用户的家目录
+..                   上一级目录信息
+.                    当前目录信息
+|                    管道符号，将前面命令执行操作结果，交给管道符号后面的命令进行处理
+> >>
+<                    输入重定向 xargs
+<<                   输入追加重定向
+\                    转译符号
+
